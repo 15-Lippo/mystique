@@ -1,0 +1,142 @@
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mystique Cartomanzia - Lettura Tarocchi e Oroscopo</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" crossorigin="anonymous"></script>
+    
+    <!-- Update PayPal SDK with the correct configuration -->
+    <script src="https://www.paypal.com/sdk/js?client-id=sb&currency=EUR&intent=capture"></script>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <svg viewBox="0 0 100 100" width="60" height="60">
+                <circle cx="50" cy="50" r="45" fill="#2c0549" />
+                <path d="M50 10 L60 40 H40 Z" fill="#e6c619" />
+                <path d="M20 40 L50 60 L20 80 Z" fill="#e6c619" />
+                <path d="M80 40 L50 60 L80 80 Z" fill="#e6c619" />
+                <circle cx="50" cy="50" r="10" fill="#2c0549" stroke="#e6c619" stroke-width="2" />
+                <text x="50" y="53" text-anchor="middle" fill="#e6c619" font-size="8">M</text>
+            </svg>
+            <h1>Mystique Cartomanzia</h1>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h2>Scopri il tuo futuro con i Tarocchi</h2>
+                <p>Lettura personalizzata basata sulla tua carta astrale</p>
+            </div>
+        </section>
+
+        <section class="birth-info">
+            <div class="birth-info-form">
+                <h2>Inserisci i tuoi dati per la lettura</h2>
+                <div class="form-group">
+                    <label for="birthDate">Data di Nascita</label>
+                    <input type="date" id="birthDate" required>
+                </div>
+                <div class="form-group">
+                    <label for="birthTime">Ora di Nascita</label>
+                    <input type="time" id="birthTime" required>
+                </div>
+                <div class="form-group">
+                    <label for="birthPlace">Luogo di Nascita</label>
+                    <input type="text" id="birthPlace" required placeholder="Es. Roma, Italia">
+                </div>
+                <button type="button" id="generateReading" class="cta-button">Leggi il mio Futuro</button>
+            </div>
+        </section>
+
+        <section id="daily-card-section" class="daily-card-section">
+            <h2>Carta del Giorno</h2>
+            <p>Scegli una carta per scoprire il messaggio della giornata</p>
+            <div id="daily-card-selection" class="daily-card-selection">
+                <!-- Cards will be generated here -->
+            </div>
+            <div id="daily-card-result" class="daily-card-result">
+                <h3>Il tuo messaggio del giorno</h3>
+                <div id="selected-daily-card" class="selected-daily-card"></div>
+                <div id="daily-card-message"></div>
+            </div>
+        </section>
+
+        <section id="reading-result" class="reading-result">
+            <div class="daily-horoscope">
+                <h3>Oroscopo del Giorno</h3>
+                <div id="horoscopeSign" class="horoscope-sign"></div>
+                <div id="horoscopeContent" class="horoscope-content"></div>
+            </div>
+
+            <div class="tarot-reading">
+                <h3>La Tua Lettura dei Tarocchi</h3>
+                <div class="reading-options">
+                    <button id="auto-spread" class="option-button active">Lettura Automatica</button>
+                    <button id="choose-cards" class="option-button">Scegli le Tue Carte</button>
+                </div>
+                <div id="select-cards-container" class="select-cards-container">
+                    <p>Seleziona 5 carte per la tua lettura</p>
+                    <div id="cards-selection" class="cards-selection"></div>
+                    <button id="confirm-selection" class="cta-button" disabled>Conferma Selezione</button>
+                </div>
+                <div id="tarot-container" class="tarot-container">
+                    <!-- Cards will be added dynamically -->
+                </div>
+                <div id="tarot-interpretation"></div>
+            </div>
+
+            <div class="astrological-chart">
+                <h3>La Tua Carta Astrale</h3>
+                <div id="chart-container">
+                    <svg id="astrological-chart" viewBox="0 0 300 300" width="300" height="300">
+                        <circle cx="150" cy="150" r="145" fill="none" stroke="#e6c619" stroke-width="2"/>
+                        <circle cx="150" cy="150" r="110" fill="none" stroke="#e6c619" stroke-width="1"/>
+                    </svg>
+                </div>
+                <div id="chart-interpretation"></div>
+            </div>
+        </section>
+
+        <section class="personalized-reading">
+            <div class="reading-details">
+                <h2>Lettura Personalizzata</h2>
+                <p>Scopri il tuo destino con una lettura astrale esclusiva</p>
+                <div class="reading-price">
+                    <span class="price">€1.50</span>
+                    <p>Lettura automatica dei Tarocchi</p>
+                    <p>Oroscopo giornaliero personalizzato</p>
+                    <p>Allineamento astrale del tuo segno</p>
+                    <p>Numeri fortunati inclusi</p>
+                </div>
+                <div class="reading-info">
+                    <p>Una lettura profonda e dettagliata basata sulla tua carta astrale</p>
+                    <p>Comprendi il tuo percorso spirituale e le tue potenzialità nascoste</p>
+                </div>
+                <div class="maestro-note">
+                    <p>Abbiamo studiato approfonditamente le conoscenze del Maestro Gustavo Roll, 
+                       le cui intuizioni e metodi sono alla base della nostra ricerca spirituale.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <section id="payment-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Pagamento Lettura</h2>
+            <div id="paypal-button-container"></div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2023 Mystique Cartomanzia. Tutti i diritti riservati.</p>
+    </footer>
+
+    <script src="tarotData.js"></script>
+    <script src="astroData.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
